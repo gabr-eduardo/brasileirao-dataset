@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasileirão Dataset API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .endpoint {
+            margin-bottom: 40px;
+        }
+
+        .response,
+        .request {
+            background: #e7f0ff;
+            padding: 10px;
+            border: 1px solid #cce4ff;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .response {
+            background: #dff0d8;
+            border-color: #d0e9c6;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Brasileirão Dataset API</h1>
+        <br>
+        <p>Bem-vindo(a) à documentação da API Brasileirão Dataset. Aqui você encontrará informações dos jogos do
+            Campeonato
+            Brasileiro Série A desde o seu início em 2003 até 2023.<br>
+            Todos os dados foram obtidos do repositório de <a
+                href="https://github.com/adaoduque/Brasileirao_Dataset">@adaoduque</a> no GitHub.<br>
+            Colabore ou deixe sua issue :) <a href="https://github.com/gabr-eduardo/brasileirao-dataset">aqui</a>!</p>
+
+        <h3>Exemplo de resposta:</h3>
+        <pre><code class="json">{
+    "ID": 8000,
+    "rodata": 36,
+    "data": "2022-11-05",
+    "hora": "20:33",
+    "mandante": "Corinthians",
+    "visitante": "Ceara",
+    "formacao_mandante": "4-2-3-1",
+    "formacao_visitante": "4-5-1",
+    "tecnico_mandante": "V. de Oliveira Lopes Pereira",
+    "tecnico_visitante": "J. Antonello",
+    "vencedor": "Corinthians",
+    "arena": "Neo Química Arena",
+    "mandante_Placar": 1,
+    "visitante_Placar": 0,
+    "mandante_Estado": "SP",
+    "visitante_Estado": "CE"
+}</code></pre>
+
+        <h2>Métodos Getters</h2>
+        <br>
+
+        <div class="endpoint">
+            <h3>Buscar Todos os Jogos</h3>
+            <p><strong>Endpoint:</strong> <code>/api/jogos</code><br>
+                <strong>Descrição:</strong> Recupera todos os jogos registrados na API.
+            </p>
+        </div>
+
+        <div class="endpoint">
+            <h3>Buscar Jogo por ID</h3>
+            <p><strong>Endpoint:</strong> <code>/api/jogos/:id</code>
+                <br><strong>Parâmetros:</strong>
+            </p>
+            <ul>
+                <li><strong>id:</strong> ID do jogo que você deseja buscar (obrigatório)</li>
+            </ul>
+            <p><strong>Descrição:</strong> Recupera um jogo específico pelo ID.</p>
+        </div>
+
+        <div class="endpoint">
+            <h3>Buscar Jogos por Intervalo de Datas</h3>
+            <p><strong>Endpoint:</strong> <code>/api/jogos/data/:start/:end</code><br>
+                <strong>Parâmetros:</strong>
+            </p>
+            <ul>
+                <li><strong>start:</strong> Data de início no formato YYYY-MM-DD (obrigatória)</li>
+                <li><strong>end:</strong> Data de fim no formato YYYY-MM-DD (obrigatória)</li>
+            </ul>
+            <p><strong>Descrição:</strong> Recupera todos os jogos dentro do intervalo de datas fornecido.</p>
+        </div>
+
+        <div class="endpoint">
+            <h3>Buscar Jogos por Confronto e Intervalo de Datas</h3>
+            <p><strong>Endpoint:</strong> <code>/api/jogos/confronto/:time1/:time2/:datainicio?/:datafim?</code><br>
+                <strong>Parâmetros:</strong>
+            </p>
+            <ul>
+                <li><strong>mandante:</strong> Nome do primeiro time (obrigatório)</li>
+                <li><strong>visitante:</strong> Nome do segundo time (obrigatório)</li>
+                <li><strong>datainicio:</strong> Data de início no formato YYYY-MM-DD (opcional)</li>
+                <li><strong>datafim:</strong> Data de fim no formato YYYY-MM-DD (opcional)</li>
+            </ul>
+            <p><strong>Descrição:</strong> Recupera todos os jogos entre os times fornecidos e, se definido, dentro do
+                intervalo de datas.</p>
+        </div>
+
+        <div class="endpoint">
+            <h3>5. Buscar Jogos por Mandante e Intervalo de Datas</h3>
+            <p><strong>Endpoint:</strong> <code>/api/jogos/mandante/:mandante/:datainicio?/:datafim?</code><br>
+                <strong>Parâmetros:</strong>
+            </p>
+            <ul>
+                <li><strong>mandante:</strong> Nome do time mandante (obrigatório)</li>
+                <li><strong>datainicio:</strong> Data de início no formato YYYY-MM-DD (opcional)</li>
+                <li><strong>datafim:</strong> Data de fim no formato YYYY-MM-DD (opcional)</li>
+            </ul>
+            <p><strong>Descrição:</strong> Recupera todos os jogos para um time mandante e, se definido, dentro do
+                intervalo de datas.</p>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+</body>
+
+</html>
