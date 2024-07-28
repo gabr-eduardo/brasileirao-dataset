@@ -109,10 +109,19 @@ controller.getByConfronto = async (req, res) => {
     }
 };
 
-controller.getByMandanteAndData = async (req, res) => {
+controller.getByTimeAndData = async (req, res) => {
     try {
-        const { mandante, datainicio, datafim } = req.params;
-        const query = { mandante: mandante };
+        const { time, datainicio, datafim } = req.params;
+        const query = {
+            [Op.or]: [
+                {
+                    mandante: time
+                },
+                {
+                    visitante: time
+                }
+            ]
+        };
 
         if (datainicio && datafim) {
             const startDate = new Date(datainicio);

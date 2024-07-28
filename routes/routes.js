@@ -15,6 +15,6 @@ router.get('/jogos/data/:start/:end', controller.getByData); // retorna os jogos
 
 router.get('/jogos/confronto/:time1/:time2/:datainicio?/:datafim?', controller.getByConfronto); // retorna os jogos pelo confronto e (caso enviadas) datas
 
-router.get('/jogos/mandante/:mandante/:datainicio?/:datafim?', controller.getByMandanteAndData); // retorna os jogos pelo mandante e (caso enviadas) datas
+router.get('/jogos/time/:time/:datainicio?/:datafim?', controller.getByTimeAndData); // retorna os jogos pelo time e (caso enviadas) datas
 
 module.exports = router;
